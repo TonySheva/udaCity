@@ -1,4 +1,5 @@
-# udaCity
-daily study from udaCity
+udaCity 
 
-似乎要建一个文件才能上传
+每一门课都会写一个reading在这里
+
+
