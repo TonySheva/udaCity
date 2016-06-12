@@ -85,3 +85,5 @@ operator.
 继承和抽象很关键
 Don't repeat yourself
 
+step by step
+
