@@ -19,3 +19,13 @@
 
 #  echo ?   这样会输出当前路径下一个字符的文件  如果？？ 那就两个..
 
+# netstat -plten |grep 3000
+
+#tcp6       0      0 :::3000                 :::*                    LISTEN      0          620834      2524/main
+
+#kill -9 2524
+
+# vim /etc/hosts 
+
+#127.0.0.1  test.test.com
+

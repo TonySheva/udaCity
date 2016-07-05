@@ -48,3 +48,8 @@ docker attach test3
 
 docker exec -i -t `sudo docker ps|grep test3|awk '{print $1}'` bash
 
+想要在一个已经create的docker中添加一个port是不能在start中完成的
+
+只能在已有的docker上再建一个新的加上端口号了。
+
+
