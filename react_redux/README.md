@@ -39,8 +39,3 @@ redux的store实际上是state的集合（这样说可能也不太正确）
 我们的value = this.props.user就可以了
 
 
-
-
-每一门课都会写一个reading在这里
-
-

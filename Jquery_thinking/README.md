@@ -448,3 +448,4 @@ end: function() {
 502            return obj && typeof obj ==="object" && "setInterval" in obj;
 503        },
 
+转自 http://segmentfault.com/blog/trigkit4/1190000000660257#articleHeader3

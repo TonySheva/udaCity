@@ -1,14 +1,9 @@
-在查阅w3school中，第一句话中的“元数据”就让我开始了Google之旅。然后很顺利的在英文版的w3school找到了想要的结果。（中文w3school说的是元信息，Google和百度都没有相关的词条。但元数据在Google就有详细解释。所以这儿采用英文版W3school的解释。）
-
 The <meta> tag provides metadata about the HTML document. Metadata will not be displayed on the page, but will be machine parsable.
 不难看出，其中的关键是metadata，中文名叫元数据，是用于描述数据的数据。它不会显示在页面上，但是机器却可以识别。这么一来meta标签的作用方式就很好理解了。
 
 用处
 Meta elements are typically used to specify page description, keywords, author of the document, last modified, and other metadata.
 The metadata can be used by browsers (how to display content or reload page), search engines (keywords), or other web services
-
-这句话对meta标签用处的介绍，简洁明了。
-翻译过来就是：meta常用于定义页面的说明，关键字，最后修改日期，和其它的元数据。这些元数据将服务于浏览器（如何布局或重载页面），搜索引擎和其它网络服务。
 
 组成
 meta标签共有两个属性，分别是http-equiv属性和name属性。
@@ -25,13 +20,13 @@ A. keywords(关键字)
 说明：用于告诉搜索引擎，你网页的关键字。
 举例：
 
-<meta name="keywords" content="Lxxyx,博客，文科生，前端">
+<meta name="keywords" content="笔记， 转载">
 B. description(网站内容的描述)
 
 说明：用于告诉搜索引擎，你网站的主要内容。
 举例：
 
-<meta name="description" content="文科生，热爱前端与编程。目前大二，这是我的前端博客">
+<meta name="description" content="good things for anyone">
 C. viewport(移动端的窗口)
 
 说明：这个概念较为复杂，具体的会在下篇博文中讲述。
@@ -62,20 +57,8 @@ E. author(作者)
 说明：用于标注网页作者
 举例：
 
-<meta name="author" content="Lxxyx,841380530@qq.com">
+<meta name="author" content="tony">
 F. generator(网页制作软件)
-
-说明：用于标明网页是什么软件做的
-举例: (不知道能不能这样写)：
-
-<meta name="generator" content="Sublime Text3">
-G. copyright(版权)
-
-说明：用于标注版权信息
-举例：
-
-<meta name="copyright" content="Lxxyx"> //代表该网站为Lxxyx个人版权所有。
-H. revisit-after(搜索引擎爬虫重访时间)
 
 说明：如果页面不是经常更新，为了减轻搜索引擎爬虫对服务器带来的压力，可以设置一个爬虫的重访时间。如果重访时间过短，爬虫将按它们定义的默认时间来访问。
 举例：
@@ -90,15 +73,6 @@ I. renderer(双核浏览器渲染方式)
 <meta name="renderer" content="ie-comp"> //默认IE兼容模式
 <meta name="renderer" content="ie-stand"> //默认IE标准模式
 2. http-equiv属性
-介绍之前，先说个小插曲。看文档和博客关于http-equiv的介绍时，有这么一句。
-
-http-equiv顾名思义，相当于http的文件头作用。
-一开始看到这句话的时候，我是迷糊的。因为我看各类技术名词，都会习惯性的去记住它的英文全称。equiv的全称是"equivalent"，意思是相等，相当于。然后我脑子里出现了大大的迷惑：“HTTP相等？”
-
-后来还准备去Segmentfault提问来着。结果在写问题的时候，突然反应出equivalent还有相当于的意思。意思就是相当于http的作用。至于文件头是哪儿出来的，估计是从其作用来分析的。我认为顾名思义并不能得出"相当于http的文件头作用"这个论断。
-
-这个我所认为的http-equiv意思的简介。
-相当于HTTP的作用，比如说定义些HTTP参数啥的。
 
 meta标签中http-equiv属性语法格式是：
 
@@ -159,3 +133,5 @@ E. refresh(自动刷新并指向某页面)
 F. Set-Cookie(cookie设定)
 
 说明：如果网页过期。那么这个网页存在本地的cookies也会被自动删除。
+
+转自https://segmentfault.com/a/1190000004279791

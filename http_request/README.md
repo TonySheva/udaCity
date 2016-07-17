@@ -1,16 +1,10 @@
-经常抓包看 HTTP 请求的同学应该对 Vary 这个响应头字段并不陌生，它有什么用？用 PageSpeed 工具检查页面时，经常看到「Specify a Vary: Accept-Encoding header（请指定一个 Vary: Accept-Encoding 标头）」这样的建议，为什么要这样做？本文记录我对 Vary 的一些研究，其中就包含这些问题的答案。
-HTTP 内容协商
-要了解 Vary 的作用，先得了解 HTTP 的内容协商机制。有时候，同一个 URL 可以提供多份不同的文档，这就要求服务端和客户端之间有一个选择最合适版本的机制，这就是内容协商。
-协商方式有两种，一种是服务端把文档可用版本列表发给客户端让用户选，这可以使用 300 Multiple Choices 状态码来实现。这种方案有不少问题，首先多一次网络往返；其次服务端同一文档的某些版本可能是为拥有某些技术特征的客户端准备的，而普通用户不一定了解这些细节。举个例子，服务端通常可以将静态资源输出为压缩和未压缩两个版本，压缩版显然是为支持压缩的客户端而准备的，但如果让普通用户选，很可能选择错误的版本。
-所以 HTTP 的内容协商通常使用另外一种方案：服务端根据客户端发送的请求头中某些字段自动发送最合适的版本。可以用于这个机制的请求头字段又分两种：内容协商专用字段（Accept 字段）、其他字段。
-首先来看 Accept 字段，详见下表：
+Accept 字段，详见下表：
 请求头字段	说明	响应头字段
 Accept	告知服务器发送何种媒体类型	Content-Type
 Accept-Language	告知服务器发送何种语言	Content-Language
 Accept-Charset	告知服务器发送何种字符集	Content-Type
 Accept-Encoding	告知服务器采用何种压缩方式	Content-Encoding
 例如客户端发送以下请求头：
-BASH
 Accept:*/*
 Accept-Encoding:gzip,deflate,sdch
 Accept-Language:zh-CN,en-US;q=0.8,en;q=0.6
@@ -34,7 +28,6 @@ Vary: User-Agent, Cookie
 Nginx 和 SPDY
 通常，上面说的这些工作，Web Server 都可以帮我们搞定。对于 Nginx 来说，下面这个配置可以自动给启用了 gzip 的响应加上 Vary: Accept-Encoding：
 gzip_vary on;
-BASH
 
 HTTP/1.1 200 OK
 Server: nginx
@@ -51,7 +44,6 @@ Strict-Transport-Security: max-age=31536000
 Accept-Ranges: bytes
 可以看到，服务端正确输出了「Vary: Accept-Encoding」，一切正常。
 但是用 Chrome 自带抓包工具看下，这个响应头却是这样：
-BASH
 HTTP/1.1 200 OK
 cache-control: max-age=315360000
 content-encoding: gzip
@@ -68,7 +60,6 @@ SPDY 规定客户端必须支持压缩，这意味着 SPDY 服务器可以直接
 User-agents are expected to support gzip and deflate compression. Regardless of the Accept-Encoding sent by the user-agent, the server may select gzip or deflate encoding at any time. [via]
 于是，对于支持 SPDY 的客户端来说，Vary: Accept-Encoding 没有用途，Nginx 选择直接去掉它，可以节省一点流量。curl 或其他不支持 SPDY 协议的客户端还是走 HTTP 协议，所以看到的响应头是常规的。
 Nginx 的这个做法是否合适一直有争论，实际上并不是所有支持 SPDY 的 Web Server 都会这么做。例如即使通过 SPDY 协议访问 Google 首页的 js 文件，依然可以看到 vary: Accept-Encoding：
-BASH
 HTTP/1.1 200 OK
 status: 200 OK
 version: HTTP/1.1
