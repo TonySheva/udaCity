@@ -39,3 +39,11 @@ redux的store实际上是state的集合（这样说可能也不太正确）
 我们的value = this.props.user就可以了
 
 .map 可以用来遍历数组输出值
+
+关于展示组件  以及与store/state connect的组件
+
+action的设置。需要step by step
+
+每一步的状态，以及可预见的结果（return value）
+
+

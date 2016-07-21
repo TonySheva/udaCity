@@ -1,5 +1,3 @@
-在初學REST的這幾年，我都認為這幾個 HTTP Verbs 就是對應 CRUD：
-
 POST = 新增
 GET = 讀取
 PUT = 更新
