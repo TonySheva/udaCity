@@ -46,4 +46,8 @@ action的设置。需要step by step
 
 每一步的状态，以及可预见的结果（return value）
 
+真正改变state的再去dispatch action
 
+每一个action都会刷新整一个state（object.assign({}, state, xxx)
+
+清晰每个action操作 -》 设计参数/结构 -》 函数 -》 抽出展示与应用
