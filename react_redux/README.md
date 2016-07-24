@@ -51,3 +51,8 @@ action的设置。需要step by step
 每一个action都会刷新整一个state（object.assign({}, state, xxx)
 
 清晰每个action操作 -》 设计参数/结构 -》 函数 -》 抽出展示与应用
+
+实际上将一些state中的一些属性，isUpdate ，
+直接用key -value 的方式 从action 中dispatch过来直接修改。
+这样去做一些formChange 或者是对fetch回来的报错都挺有效果的。
+
