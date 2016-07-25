@@ -56,3 +56,11 @@ action的设置。需要step by step
 直接用key -value 的方式 从action 中dispatch过来直接修改。
 这样去做一些formChange 或者是对fetch回来的报错都挺有效果的。
 
+
+array.map(o, i) => {
+  <option key={i}>{o}</option>
+}
+一个map的warning：
+
+react作为view层有虚拟dom ，每次渲染前会收集所有的key，
+先跟渲染的结果key进行对比，算出最简单的渲染方式。
